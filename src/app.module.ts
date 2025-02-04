@@ -3,6 +3,8 @@ import { AuthModule } from './app/auth/auth.module';
 import { SubscriptionModule } from './app/subscription/subscription.module';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { AuthGuard } from './app/auth/guards/auth.guards';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -24,12 +26,18 @@ import { SequelizeModule } from '@nestjs/sequelize';
       },
       logging: (data) => {
 
-      }
+      },
     }),
+    AuthModule,
     SubscriptionModule,
-    AuthModule
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
-export class AppModule {}
+export class AppModule {
+}

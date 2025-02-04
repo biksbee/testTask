@@ -2,7 +2,7 @@ import { BelongsTo, Column, DataType, ForeignKey, Model, Sequelize, Table } from
 import { UsersModel } from './user.model';
 
 @Table({
-  tableName: 'users_tokens',
+  tableName: 'sessions',
   comment: 'Таблица с токенами пользователей',
 })
 export class SessionModel extends Model<SessionModel> {

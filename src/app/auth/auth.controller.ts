@@ -6,11 +6,11 @@ import { AuthResponse } from './auth.responses';
 import { LoginAuthDto } from './auth.dto';
 import { IsSecured } from './decorators/auth.is-secured.decorator';
 
-@Controller('auth')
+@Controller('auth/api')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('api/register')
+  @Post('register')
   @IsSecured(false)
   @ApiOperation({
     summary: 'Регистрация пользователя',
@@ -29,7 +29,7 @@ export class AuthController {
     return this.authService.register({ ...dto, fingerprint })
   }
 
-  @Post('api/login')
+  @Post('login')
   @IsSecured(false)
   @ApiOperation({
     summary: 'Авторизация пользователя',
